@@ -102,9 +102,11 @@ Add this at the end of the file:
 ### Posting a new article
 
 Posting a new article:
+
     python post.py draft/my-article.txt
 
 Posting with parameters:
+
     python post.py draft/my-article.txt --title="My first article"
 
 ### Retrieving a new article
@@ -116,13 +118,17 @@ Posting with parameters:
     python patch.py draft/my-article.txt
 
 Make the article public:
+
     python patch.py draft/my-article.txt --status "public"
+
 The article is "private" by default.
 
 Change the title:
+
     python patch.py draft/my-article.txt --title "New Title"
 
 Change the slug:
+
     python patch.py draft/my-article.txt --slug "new-slug"
 
 ## Markdown with goodies
