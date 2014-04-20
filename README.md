@@ -1,7 +1,23 @@
 <!--markdown-->
 # djangotanaka
 
-A Django based web site
+A Django based web site good for blogging. What is so good? Here are some
+benefits:
+
+1. **Write in your favorite editor**
+
+    Create and edit posts with your favorite text editor, and post them with
+    a single command, rather than opening a web browser
+
+2. **Use [markdown](http://en.wikipedia.org/wiki/Markdown) instead of
+cumbersome HTML.**
+
+    Markdown is more legible than HTML in the draft, and produces a clean HTML.
+
+3. **Beafutiful preset layouts is one keyword away**
+
+    Like [cover photo](http://daigotanaka.org/full-width-cover)
+    or [carousel](http://daigolab.org) layouts?
 
 ## How to use
 
@@ -11,7 +27,7 @@ A Django based web site
 set up github
 2. Get the source code
 
-        git clone git@github.com:daigotanaka/djangotanaka.git```
+        git clone git@github.com:daigotanaka/djangotanaka.git
         mv djanotanaka my_website
 
 ### Install Python
@@ -78,7 +94,7 @@ Add this at the end of the file:
     export DJANGO_USERNAME
     export DJANGO_API_KEY
 
-### Post a new article
+### Posting a new article
 
     python post draft/my-article.txt
 
