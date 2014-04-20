@@ -37,7 +37,12 @@ class Command(object):
                 params=params,
                 data=simplejson.dumps(data)
             )
-        print response
+
+        if response.status_code == 202:
+            print ("Patched successfully at %s/%s" %
+                (WEBSITE_URL, self.new_slug or current_slug))
+        else:
+            print str(response.status_code) + ": Oops, something went wrong."
 
 
 if __name__ == '__main__':
