@@ -1,23 +1,27 @@
 <!--markdown-->
 # djangotanaka
 
-A Django based web site good for blogging. What is so good? Here are some
-benefits:
+A Django based web site that let you focus on writing.
 
 1. **Write in your favorite editor**
 
     Create and edit posts with your favorite text editor, and post them with
-    a single command, rather than opening a web browser
+    a single command, rather than opening a web browser:
 
-2. **Use [markdown](http://en.wikipedia.org/wiki/Markdown) instead of
+        python post.py some-article.txt
+
+2. **Use [markdown](http://en.wikipedia.org/wiki/Markdown/#Example) instead of
 cumbersome HTML.**
 
-    Markdown is more legible than HTML in the draft, and produces a clean HTML.
+    Draft written in Markdown is more legible than HTML in the draft, and
+    produces clean HTMLs.
 
-3. **Beafutiful preset layouts is one keyword away**
+3. **Beafutiful preset layouts is just one keyword away**
 
     Like [cover photo](http://daigotanaka.org/full-width-cover)
-    or [carousel](http://daigolab.org) layouts?
+    or [carousel](http://daigolab.org) layouts? This can be done just adding a
+    keyword "coverphoto" or "carousel" (or
+    [both](daigotanaka.org/our-garden-in-spring) if you want to be greedy)
 
 ## How to use
 
