@@ -21,7 +21,8 @@ cumbersome HTML.**
     Like [cover photo](http://daigotanaka.org/full-width-cover)
     or [carousel](http://daigolab.org) layouts? This can be done just adding a
     keyword "coverphoto" or "carousel" (or
-    [both](daigotanaka.org/our-garden-in-spring) if you want to be greedy)
+    [both](http://daigotanaka.org/our-garden-in-spring) if you want to be
+    greedy)
 
 ## How to use
 
@@ -43,7 +44,7 @@ Mac OSX users should follow
 2. Install [pip](http://pip.readthedocs.org/en/latest/installing.html)
 3. Install Python packages
 
-        pip install virtualenv    
+        pip install virtualenv
         virtualenv env
         source env/bin/activate
         pip install -r requirements
@@ -89,7 +90,7 @@ Add this at the end of the file:
 
 *Point browser to 0.0.0.0:5000 to view site
 
-## Posting, retrieving, and editing articles
+## Posting, retrieving, and updating articles
 
 ### Set environment variables (do it once)
 
@@ -100,15 +101,29 @@ Add this at the end of the file:
 
 ### Posting a new article
 
-    python post draft/my-article.txt
+Posting a new article:
+    python post.py draft/my-article.txt
 
-### Retrieving a new article 
+Posting with parameters:
+    python post.py draft/my-article.txt --title="My first article"
 
-    python get --slug my-article 
+### Retrieving a new article
 
-### Editing an existing article 
+    python get.py --slug my-article
 
-    python patch draft/my-article 
+### Updating an existing article
+
+    python patch.py draft/my-article.txt
+
+Make the article public:
+    python patch.py draft/my-article.txt --status "public"
+The article is "private" by default.
+
+Change the title:
+    python patch.py draft/my-article.txt --title "New Title"
+
+Change the slug:
+    python patch.py draft/my-article.txt --slug "new-slug"
 
 ## Markdown with goodies
 
