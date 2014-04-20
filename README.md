@@ -1,19 +1,82 @@
+<!--markdown-->
 # djangotanaka
 
 A Django based web site
 
-## Install
+## How to use
 
-    virtualenv env --distribute
-    source env/bin/activate
-    pip install -r requirements
+### Install git and get source code
 
-## Run
+1. Follow [this instruction](https://help.github.com/articles/set-up-git) to
+set up github
+2. Get the source code
+
+        git clone git@github.com:daigotanaka/djangotanaka.git```
+        mv djanotanaka my_website
+
+### Install Python
+
+Mac OSX users should follow
+[this guide](http://docs.python-guide.org/en/latest/starting/install/osx/)
+
+1. Install [Python](https://www.python.org/downloads/)
+2. Install [pip](http://pip.readthedocs.org/en/latest/installing.html)
+3. Install Python packages
+
+        pip install virtualenv    
+        virtualenv env
+        source env/bin/activate
+        pip install -r requirements
+
+### Deploy on Heroku
+
+1. Create [a Heroku account](https://devcenter.heroku.com/articles/quickstart)
+and install [the Heroku toolbelt](https://toolbelt.heroku.com/)
+2. Create an Heroku app and add PostgreSQL
+
+        heroku login
+        heroku apps:create your_heroku_app_name
+        heroku addons:add heroku-postgresql:dev --app your_heroku_app_name
+
+3. Edit my_website/.git/config to add heroku as the remote repository
+Add this at the end of the file:
+
+        [remote "heroku"]
+            url = git@heroku.com:your_heroku_app_name.git
+            fetch = +refs/heads/*:refs/remotes/heroku/*
+
+4. Deploy
+
+        git push heroku master
+
+## Run the server locally
+
+### Set up [PostgreSQL](http://www.postgresql.org/download/)
+
+### Set environment variables (do it once)
+
+    LOCAL_POSTGRES_DBNAME=your_db_name
+    LOCAL_POSTGRES_PASSWORD=your_db_password
+    LOCAL_POSTGRES_USERNAME=your_db_username
+    export LOCAL_POSTGRES_DBNAME
+    export LOCAL_POSTGRES_PASSWORD
+    export LOCAL_POSTGRES_USERNAME
+
+### Start server
 
     source venv/bin/activate
     foreman start
 
+*Point browser to 0.0.0.0:5000 to view site
+
 ## Posting, retrieving, and editing articles
+
+### Set environment variables (do it once)
+
+    DJANGO_USERNAME=your_django_username
+    DJANGO_API_KEY=your_django_api_key
+    export DJANGO_USERNAME
+    export DJANGO_API_KEY
 
 ### Post a new article
 
