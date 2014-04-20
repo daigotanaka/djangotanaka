@@ -31,7 +31,7 @@ class Command(object):
             print page.get("slug")
             with open(page.get("slug") + ".txt", "w") as f:
                 try:
-                    f.write(page.get("body"))
+                    f.write(page.get("body").encode("utf-8"))
                 except UnicodeEncodeError, err:
                     print err
 
