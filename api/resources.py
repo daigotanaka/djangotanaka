@@ -7,7 +7,7 @@ from tastypie.exceptions import Unauthorized
 from tastypie.models import create_api_key
 from tastypie.resources import ALL, ModelResource
 
-from web.models import Page
+from core.models import Page
 
 models.signals.post_save.connect(create_api_key, sender=User)
 

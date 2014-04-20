@@ -6,7 +6,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from web.models import Page
+from core.models import Page
 
 
 def render_landing(request):
