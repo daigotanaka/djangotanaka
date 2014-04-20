@@ -240,7 +240,7 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
         content = make_carousel_content(content, exclude_first)
 
     if request.user.is_staff:
-        content += ("<div>Status: " + page.status + " <a href=\"/admin/web/page/" + str(page.id) +
+        content += ("<div>Status: " + page.status + " <a href=\"/admin/core/page/" + str(page.id) +
             "\">Edit</a></div>")
 
     prev_page = None
