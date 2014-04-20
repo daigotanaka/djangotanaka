@@ -1,0 +1,13 @@
+body {
+  background-color: black;
+  font-family: sans-serif;
+  color: white;
+}
+
+.photospread {
+  width: 100%;
+}
+
+#banner a {
+  color: white;
+}

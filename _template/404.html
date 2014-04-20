@@ -1,0 +1,16 @@
+{%extends "base.html" %}
+    {% block more_style %}
+    <link href="/static/css/page.css" rel="stylesheet">
+    {{ head | safe }}
+    {% endblock %}
+
+    {% block content %}
+    <div id="content" class="span11">
+      <div id="main">
+        404. Nothing is here.
+      </div>
+      <div id="footer" class="right-align">
+        <a href="http://creativecommons.org/licenses/"><img src="http://i.creativecommons.org/l/by/3.0/88x31.png" class="cc-logo" /></a>
+      </div>
+    </div>
+    {% endblock %}

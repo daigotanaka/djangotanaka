@@ -1,0 +1,102 @@
+body {
+  /* 30px to make the container go all the way to the bottom of the topbar */
+  padding-top: 30px;
+  font-size: 14pt;
+  line-height: 22pt;
+}
+
+.burgundy {
+  color: #8C001A;
+}
+
+h1 {
+  font-size: 48pt;
+  line-height: 48px;
+}
+
+a, a:hover, a:visited {
+  color: #8C001A;
+}
+
+li {
+  line-height: 22pt;
+}
+
+#main img {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#banner {
+}
+
+#banner a {
+  color: black;
+}
+
+#banner a:hover {
+  text-decoration: none;
+}
+
+#main {
+  padding: 5px;
+  text-align: justify;
+}
+
+#footer {
+  margin-top: 10px;
+  padding-top: 5px;
+  border-top: solid 1px #8C001A;
+}
+
+#footer table {
+  width: 100%;
+  font-size: 10pt;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.social-logo {
+  height: 23px;
+}
+
+.cc-logo {
+  width: 64px;
+}
+
+.byline {
+  font-size: 18pt;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 480px) {
+body {
+  padding-top: 15px;
+}
+
+h1 {
+  font-size: 35pt;
+  line-height: 48px;
+}
+
+.byline {
+  font-size: 13pt;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+#main {
+  text-align: left;
+}
+
+#footer table {
+  font-size: 9pt;
+}
+
+}

@@ -1,0 +1,49 @@
+#main img {
+    margin-top: 20px;
+}
+
+#myCarousel {
+    padding: 15px 15px 15px 15px;
+}
+
+.carousel .slide {
+  min-height: 600px;
+}
+
+.carousel-control {
+  top: 45%;
+  height: 120px;
+  margin-top: 0;
+  font-size: 100px;
+  text-shadow: 0 3px 3px rgba(255,0,26,.4);
+  background-color: transparent;
+  border: 0;
+  z-index: 10;
+}
+
+.carousel-indicators.middle {
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.carousel-indicators.bottom {
+  top: auto;
+  bottom: 15px;
+}
+
+.carousel-indicators li {
+  background-color: rgba(127, 127, 127, 0.50);
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+}
+
+.carousel-indicators .active {
+  background-color: rgba(127, 127, 127, 1.0);
+}
+
+.carousel-indicators.middle li {
+  float: none;
+  display: inline-block;
+}

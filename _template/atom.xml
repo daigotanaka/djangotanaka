@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed
+  xmlns="http://www.w3.org/2005/Atom"
+  xmlns:thr="http://purl.org/syndication/thread/1.0"
+  xml:lang="en"
+>
+  <title type="text">{{ WEBSITE_TITLE }}</title>
+  <subtitle type="text">{{ WEBSITE_BYLINE }}</subtitle>
+  <updated>{{ last_update }}</updated>
+  <link rel="alternate" type="text/html" href="{{ WEBSITE_URL }}" />
+  <id>{{ WEBSITE_URL }}/atom_xml/</id>
+  {% for page in pages %}
+  <entry>
+    <author>
+    <name>{{ WEBSITE_TITLE }}</name>
+      <uri>{{ WEBSITE_URL }}</uri>
+    </author>
+    <title type="html"><![CDATA[{{ page.title }}]]></title>
+    <link rel="alternate" type="text/html" href="{{ page.slug }}" />
+    <id>{{ WEBSITE_URL }}/{{ page.slug }}</id>
+    <updated>{{ page.modified_at }}</updated>
+    <published>{{ page.created_at }}</published>
+    <category scheme="{{ WEBSITE_URL }}" term="general" />
+    <content type="html" xml:base="{{ page.slug }}"><![CDATA[{{ page.marked_down | safe }}]]></content>
+  </entry>
+  {% endfor %}
+</feed>

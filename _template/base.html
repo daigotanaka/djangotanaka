@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% if title %}{{ title }} | {% endif %}{{ WEBSITE_TITLE  }}</title>
+    {% block base_meta %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="">
+    <link rel="alternate" type="application/atom+xml" title="{{ WEBSITE_TITLE }}" href="{{ FEED_URL }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ WEBSITE_TITLE }}" href="{{ FEED_URL }}" />
+    {% endblock %}
+
+    {% block more_meta %}
+    <meta name="description" content="{% if title %}{{ title }} | {% endif %}{{ WEBSITE_TITLE }}">
+    <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}{{ WEBSITE_TITLE }}" />
+    <meta property="og:image" content="{{ image_url }}"/>
+    {% endblock %}
+
+    <!-- Le styles -->
+    {% block base_style %}
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/google-code-prettify" rel="stylesheet">
+    <link href="/static/css/base.css" rel="stylesheet">
+    {% endblock %}
+
+    {% block more_style %}
+    {{ head | safe }}
+    {% endblock %}
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/static/bootstrap/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/bootstrap/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/static/bootstrap/ico/favicon.png">
+  </head>
+
+  <body>
+    <div class="container">
+    {% block banner %}
+      <div id="banner" class="span11">
+        <h1><a href="/">{{ WEBSITE_TITLE }}</a></h1>
+        <div class="byline">{{ WEBSITE_BYLINE }}</div>
+      </div>
+    {% endblock %}
+    {% block content %}
+      <!-- Redefine content div -->
+      <div id="content" class="span11">
+      </div>
+    {% endblock %}
+    </div> <!-- /container -->
+
+    <script src="/static/js/jquery-2.0.3.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/google-code-prettify/prettify.js"></script>
+    {% block footer %}
+    {{ foot | safe }}
+    {% endblock %}
+    {% if request.user.is_staff == False %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', '', '');
+      ga('send', 'pageview');
+
+    </script>
+    {% endif %}
+  </body>
+</html>

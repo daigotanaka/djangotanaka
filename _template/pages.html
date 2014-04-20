@@ -1,0 +1,29 @@
+{%extends "page.html" %}
+    {% block more_style %}
+    <link href="/static/css/page.css" rel="stylesheet">
+    <link href="/static/css/pages.css" rel="stylesheet">
+    {{ head | safe }}
+    {% endblock %}
+
+    {% block content %}
+    <div id="content" class="span11">
+      <h2>blogs</h2>
+      <div id="main">
+        <table>
+        {% for page in pages %}
+          <tr>
+            <td>{{page.created_at}}</td>
+            <td>{% if page.status != "public" %}[private] {% endif %}<a href="/{{ page.slug }}">{{page.title}}</td>
+          </tr>
+        {% endfor %}
+        </table>
+      </div>
+
+      <div id="footer" class="right-align">
+        <a class="url" rel="me" href="http://twitter.com/daigotanaka"><img src="http://www.google.com/profiles/c/favicons?domain=twitter.com" alt=""></a>
+        <a class="url" rel="me" href="http://daigotanaka.tumblr.com"><img src="https://plus.google.com/_/favicon?domain=www.tumblr.com" alt=""></a>
+        <a href="https://github.com/daigotanaka"><img src="/static/img/github.jpeg" class="social-logo" /></a>
+        <a href="http://creativecommons.org/licenses/"><img src="http://i.creativecommons.org/l/by/3.0/88x31.png" class="cc-logo" /></a>
+      </div>
+    </div>
+    {% endblock %}
