@@ -61,3 +61,24 @@ Draft:
     A paragraph that is converted to slide #2
 
     ...
+
+### Combine cover photo and carousel layouts
+
+Example: http://www.daigotanaka.org/our-garden-in-spring/
+
+Draft:
+
+    <!--markdown coverphoto carousel-->
+    ![Cover photo high res image](http://mysite.com/image.jpg)
+
+    ![Mobile low res image](http://mysite.com/image-low.jpg)
+
+    ## Article title
+
+    Intro text outside carousel
+
+    A paragraph that is converted to slide #1
+
+    A paragraph that is converted to slide #2
+
+    ...
