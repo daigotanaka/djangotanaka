@@ -13,8 +13,8 @@ A Django based web site that let you focus on writing.
 2. **Use [markdown](http://en.wikipedia.org/wiki/Markdown/#Example) instead of
 cumbersome HTML.**
 
-    Draft written in Markdown is more legible than HTML in the draft, and
-    produces clean HTMLs.
+    Draft written in Markdown is more legible than HTML, and produces cleaner
+    HTML than wysiwyg HTML editors.
 
 3. **Beafutiful preset layouts is just one keyword away**
 
