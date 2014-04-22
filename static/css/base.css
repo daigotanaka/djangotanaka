@@ -5,15 +5,6 @@ body {
   line-height: 22pt;
 }
 
-.burgundy {
-  color: #8C001A;
-}
-
-h1 {
-  font-size: 48pt;
-  line-height: 48px;
-}
-
 a, a:hover, a:visited {
   color: #8C001A;
 }
@@ -26,39 +17,8 @@ hr {
   border-top: 2px solid rgba(0,39,59,.08);
 }
 
-#main img {
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#banner {
-}
-
-#banner a {
-  color: black;
-}
-
-#banner a:hover {
-  text-decoration: none;
-}
-
-#main {
-  padding: 5px;
-  text-align: justify;
-}
-
-#footer {
-  margin-top: 10px;
-  padding-top: 5px;
-  border-top: solid 1px #8C001A;
-}
-
-#footer table {
-  width: 100%;
-  font-size: 10pt;
+.burgundy {
+  color: #8C001A;
 }
 
 .right-align {
@@ -83,20 +43,57 @@ hr {
   font-size: 12pt;
 }
 
+#banner h1 {
+  font-size: 48pt;
+  line-height: 48px;
+}
+
+#banner a {
+  color: black;
+}
+
+#banner a:hover {
+  text-decoration: none;
+}
+
+#main {
+  padding: 5px;
+  text-align: justify;
+}
+
+#main img {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#footer {
+  margin-top: 10px;
+  padding-top: 5px;
+  border-top: solid 1px #8C001A;
+}
+
+#footer table {
+  width: 100%;
+  font-size: 10pt;
+}
+
 @media (max-width: 480px) {
 body {
   padding-top: 15px;
-}
-
-h1 {
-  font-size: 35pt;
-  line-height: 48px;
 }
 
 .byline {
   font-size: 13pt;
   margin-left: 5px;
   margin-bottom: 10px;
+}
+
+#banner h1 {
+  font-size: 35pt;
+  line-height: 48px;
 }
 
 #main {
