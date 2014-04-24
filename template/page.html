@@ -17,7 +17,7 @@
         {% if prev_page or next_page %}~/blogs/{{ title }}<br/>{% endif %}
         {% if next_page %}<a href="/{{ next_page.slug }}">~/blogs/{{ next_page.title }}</a><br/>{% endif %}
       </div>
-    {% if discussion %}
+    {% if DISQUS_HANDLE and discussion %}
       <div id="disqus_thread"></div>
       <script type="text/javascript">
           /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
