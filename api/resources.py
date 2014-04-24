@@ -41,7 +41,7 @@ class UserResource(ModelResource):
 
 
 class PageResource(ModelResource):
-    created_by = fields.ForeignKey(UserResource, "created_by")
+    created_by = fields.ForeignKey(UserResource, "created_by", full=True)
 
     class Meta:
         queryset = Page.objects.all()
@@ -60,4 +60,8 @@ class PageResource(ModelResource):
 
     def obj_create(self, bundle, **kwargs):
         return super(PageResource, self).obj_create(
+            bundle, created_by=bundle.request.user)
+
+    def obj_update(self, bundle, **kwargs):
+        return super(PageResource, self).obj_update(
             bundle, created_by=bundle.request.user)

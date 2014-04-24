@@ -2,6 +2,9 @@ import os
 
 DEBUG = True
 
+DEBUG_PROPAGATE_EXCEPTIONS = True
+TASTYPIE_FULL_DEBUG = True
+
 # If you use foreman, don't forget to define those in .env
 LOCAL_POSTGRES_DBNAME = os.getenv('LOCAL_POSTGRES_DBNAME')
 LOCAL_POSTGRES_USERNAME = os.getenv('LOCAL_POSTGRES_USERNAME')
