@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
 
 from tastypie import fields
@@ -57,6 +58,7 @@ class PageResource(ModelResource):
             "status": ALL,
             "body": ALL
         }
+        ordering = ["created_at", "modified_at", "slug", "title", "status"]
 
     def obj_create(self, bundle, **kwargs):
         return super(PageResource, self).obj_create(

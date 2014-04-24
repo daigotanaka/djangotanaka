@@ -15,7 +15,8 @@ class Command(object):
             "api_key": api_key,
             "slug": self.slug,
             "title": self.title,
-            "status": self.status
+            "status": self.status,
+            "order_by": "-modified_at"
         }
 
         headers = {"content-type": "application/json"}
