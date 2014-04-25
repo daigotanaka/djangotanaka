@@ -11,5 +11,5 @@ DISQUS_HANDLE = ""
 # Could change it to http://feeds.feedburner.com/your_handle
 FEED_URL = WEBSITE_URL + "/atom_xml/"
 
-GOOGLE_ANALYTICS_DOMAIN = WEBSITE_URL[7:]
+GOOGLE_ANALYTICS_DOMAIN = WEBSITE_URL[7:].replace("www.", "")
 GOOGLE_ANALYTICS_ID = ""
