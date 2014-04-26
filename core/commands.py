@@ -1,14 +1,11 @@
 
 def execute_command(command, data):
 
-    lat = data.get("lat")
-    lng = data.get("lng")
-    if lat and lng:
-        return (
-                "",
-                ("Your location is latitude %.2f and longitude %.2f" %
-                    (float(lat), float(lng)))
-                )
+    lat = None
+    lng = None
+    if type(data) is dict:
+        lat = data.get("lat")
+        lng = data.get("lng")
 
     response = {}
     response["status"] = "ok"

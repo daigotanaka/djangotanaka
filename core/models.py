@@ -1,4 +1,5 @@
 import datetime
+import simplejson
 
 from django.contrib.auth.models import User
 from django.db.models import Model
@@ -22,8 +23,7 @@ class Command(Model):
     response = TextField(blank=True)
 
     def save(self, *args, **kwargs):
-        data = simplejson.loads(self.data)
-        self.name, self.response = execute_command(self, data)
+        self.name, self.response = execute_command(self, self.data)
         super(Command, self).save(*args, **kwargs)
 
 

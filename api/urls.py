@@ -2,11 +2,12 @@ from django.conf.urls import include, patterns, url
 
 from tastypie.api import Api
 
-from resources import PageResource
+from resources import CommandResource, PageResource
 from views import beacon, ping
 
 api_v1 = Api(api_name="v1")
 api_v1.register(PageResource())
+api_v1.register(CommandResource())
 
 urlpatterns = patterns('',
     # Examples:

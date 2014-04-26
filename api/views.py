@@ -3,7 +3,7 @@ import simplejson
 import urllib
 
 from django.contrib.auth.models import User
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
@@ -19,17 +19,29 @@ def ping(request):
     return HttpResponse(simplejson.dumps(response))
 
 
+def respond_by_audio(message):
+    param = urllib.urlencode({"tl": "en", "q": message})
+    url = "http://translate.google.com/translate_tts?" + param
+    return HttpResponseRedirect(url)
+
+@csrf_exempt
 def beacon(request):
+    if request.method != "POST":
+        return HttpResponseForbidden()
+
     user = User.objects.get(username=request.GET.get("username"))
     api_key = ApiKey.objects.get(user=user)
     if not user or not api_key or api_key.key != request.GET.get("api_key"):
         raise Http404
 
-    name, response = execute_command(None, response.GET)
-    if not type(response) is dict:
-        param = urllib.urlencode({"tl": "en", "q": response})
-        url = "http://translate.google.com/translate_tts?" + param
-        return HttpResponseRedirect(url)
+    ret_format = request.GET.get("format")
+    data = {
+        "lat": request.POST.get("lat"),
+        "lng": request.POST.get("lng")
+    }
+    name, response = execute_command(None, data)
+    if ret_format == "voice" and not type(response) is dict:
+        return respond_by_audio(response)
 
     try:
         return HttpResponse(simplejson.dumps(response))

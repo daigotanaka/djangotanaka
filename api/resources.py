@@ -1,6 +1,11 @@
+import simplejson
+import urllib
+
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 
 from tastypie import fields
 from tastypie.authentication import ApiKeyAuthentication
@@ -9,7 +14,8 @@ from tastypie.exceptions import Unauthorized
 from tastypie.models import create_api_key
 from tastypie.resources import ALL, ALL_WITH_RELATIONS, ModelResource
 
-from core.models import Page
+from api.views import respond_by_audio
+from core.models import Command, Page
 
 models.signals.post_save.connect(create_api_key, sender=User)
 
@@ -39,6 +45,47 @@ class UserResource(ModelResource):
         filtering = {
             "username": ALL
         }
+
+
+class CommandResource(ModelResource):
+    created_by = fields.ForeignKey(UserResource, "created_by", full=True)
+
+    class Meta:
+        queryset = Command.objects.all()
+        allowed_methods = ["post", "get"]
+        authentication = ApiKeyAuthentication()
+        authorization = SingleItemModificationAuthorization()
+        excludes = ["id"]
+        ordering = ["created_at"]
+        always_return_data = True
+
+    def obj_create(self, bundle, **kwargs):
+        return super(CommandResource, self).obj_create(
+            bundle, created_by=bundle.request.user)
+
+    def wrap_view(self, view):
+        @csrf_exempt
+        def wrapper(request, *arg, **kwargs):
+            callback = getattr(self, view)
+            response = callback(request, *arg, **kwargs)
+
+            if request.GET.get("format") != "voice":
+                return response
+
+            try:
+                content_json = simplejson.loads(response.content)
+            except simplejson.JSONDecodeError:
+                return response
+
+            # Respond by audio only when the respose is a non-JSONizable
+            try:
+                response_json = simplejson.loads(content_json.get("response"))
+            except simplejson.JSONDecodeError:
+                return respond_by_audio(content_json["response"])
+
+            return response
+
+        return wrapper
 
 
 class PageResource(ModelResource):
