@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from core.models import Page
-from core.commands import take_order
+from core.commands import execute_command
 from tastypie.models import ApiKey
 
 logger = logging.getLogger(__name__)
@@ -25,10 +25,7 @@ def beacon(request):
     if not user or not api_key or api_key.key != request.GET.get("api_key"):
         raise Http404
 
-    command = "beacon"
-    data = request.GET
-
-    response = take_order(command, data)
+    name, response = execute_command(None, response.GET)
     if not type(response) is dict:
         param = urllib.urlencode({"tl": "en", "q": response})
         url = "http://translate.google.com/translate_tts?" + param

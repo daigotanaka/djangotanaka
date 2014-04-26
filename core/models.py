@@ -4,11 +4,27 @@ from django.contrib.auth.models import User
 from django.db.models import Model
 from django.db.models import CharField, DateTimeField, ForeignKey, TextField
 
+from core.commands import execute_command
+
 
 STATUS_CHOICES = (
     ("private", "private"),
     ("public", "public")
 )
+
+
+class Command(Model):
+    created_by = ForeignKey(User, related_name="created_commands")
+    created_at = DateTimeField(auto_now=True)
+    raw_command = TextField(blank=True)
+    name = CharField(blank=True, max_length=256)
+    data = CharField(blank=True, max_length=1024)
+    response = TextField(blank=True)
+
+    def save(self, *args, **kwargs):
+        data = simplejson.loads(self.data)
+        self.name, self.response = execute_command(self, data)
+        super(Command, self).save(*args, **kwargs)
 
 
 class Page(Model):
