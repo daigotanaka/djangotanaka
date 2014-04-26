@@ -39,7 +39,16 @@ def beacon(request):
         "lat": request.POST.get("lat"),
         "lng": request.POST.get("lng")
     }
-    name, response = execute_command(None, data)
+
+    class BeaconCommand(object):
+        created_by = user
+        name = "beacon"
+        raw_command = None
+        data = None
+
+    command = BeaconCommand()
+    command.data = simplejson.dumps(data)
+    name, response = execute_command(command)
     if ret_format == "voice" and not type(response) is dict:
         return respond_by_audio(response)
 
