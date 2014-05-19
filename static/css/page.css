@@ -1,9 +1,9 @@
-#container div {
+#content {
+  border-top: solid 1px #8C001A;
+}
+
+#content div {
   margin-right: auto;
   margin-left: auto;
   max-width: 630px;
-}
-
-#content {
-  border-top: solid 1px #8C001A;
 }
