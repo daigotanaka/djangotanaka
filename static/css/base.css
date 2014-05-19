@@ -56,6 +56,12 @@ hr {
   text-decoration: none;
 }
 
+#content div {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 630px;
+}
+
 #main {
   padding: 5px;
   text-align: justify;
