@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% block head_javascript %}
+    <!-- Load JavaScript at the footer whenever possible for faster page rendering -->
+    {{ head | safe }}
+    {% endblock %}
+
     <title>{% if title %}{{ title }} | {% endif %}{{ WEBSITE_TITLE  }}</title>
-    {% block base_meta %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="">
     <link rel="alternate" type="application/atom+xml" title="{{ WEBSITE_TITLE }}" href="{{ FEED_URL }}" />
     <link rel="alternate" type="application/rss+xml" title="{{ WEBSITE_TITLE }}" href="{{ FEED_URL }}" />
-    {% endblock %}
 
     {% block more_meta %}
     <meta name="description" content="{% if title %}{{ title }} | {% endif %}{{ WEBSITE_TITLE }}">
@@ -17,11 +20,9 @@
     {% endblock %}
 
     <!-- Le styles -->
-    {% block base_style %}
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/google-code-prettify" rel="stylesheet">
     <link href="/static/css/base.css" rel="stylesheet">
-    {% endblock %}
 
     {% block more_style %}
     {{ head | safe }}
