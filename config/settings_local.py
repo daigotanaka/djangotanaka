@@ -22,9 +22,11 @@ DATABASES = {
         # The following settings are not used with sqlite3:
         'USER': LOCAL_POSTGRES_USERNAME,
         'PASSWORD': LOCAL_POSTGRES_PASSWORD,
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'HOST': 'localhost',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '7501',                      # Set to empty string for default.
     }
 }
+
+print DATABASES
 
 

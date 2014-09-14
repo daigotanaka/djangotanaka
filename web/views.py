@@ -5,10 +5,12 @@ from django.conf import settings
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.views.decorators.cache import cache_page
 
 from core.models import Page
 
 
+@cache_page(None)
 def render_landing(request):
     old_page_id = request.GET.get("p", None)
     if old_page_id:
@@ -21,6 +23,7 @@ def render_landing(request):
     return render_page_by_slug(request, page_slug="landing", show_next_prev=False, discussion=False)
 
 
+@cache_page(None)
 def render_page_by_slug(request, page_slug, show_next_prev=True, discussion=True):
     wo_html = re.sub(r"(.*)\.html$", r"\1", page_slug)
     if page_slug != wo_html:
@@ -205,6 +208,7 @@ def get_image_url(html):
     return url
 
 
+@cache_page(None)
 def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
         template_name="page.html"):
     try:
@@ -272,6 +276,7 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
             context_instance=RequestContext(request))
 
 
+@cache_page(None)
 def render_page_list(request, template_name="pages.html", content_type="application/xhtml+xml"):
     kwargs = {}
     if not request.user.is_staff:
@@ -288,5 +293,6 @@ def render_page_list(request, template_name="pages.html", content_type="applicat
             context_instance=RequestContext(request))
 
 
+@cache_page(None)
 def render_atom_xml(request, template_name="atom.xml", content_type="text/xml"):
     return render_page_list(request, template_name=template_name)
