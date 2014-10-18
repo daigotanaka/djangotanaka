@@ -276,7 +276,6 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
             context_instance=RequestContext(request))
 
 
-@cache_page(None)
 def render_page_list(request, template_name="pages.html", content_type="application/xhtml+xml"):
     kwargs = {}
     if not request.user.is_staff:
@@ -293,6 +292,5 @@ def render_page_list(request, template_name="pages.html", content_type="applicat
             context_instance=RequestContext(request))
 
 
-@cache_page(None)
 def render_atom_xml(request, template_name="atom.xml", content_type="text/xml"):
     return render_page_list(request, template_name=template_name)
