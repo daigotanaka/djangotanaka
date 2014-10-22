@@ -10,7 +10,6 @@ from django.views.decorators.cache import cache_page
 from core.models import Page
 
 
-@cache_page(None)
 def render_landing(request):
     old_page_id = request.GET.get("p", None)
     if old_page_id:
@@ -23,7 +22,6 @@ def render_landing(request):
     return render_page_by_slug(request, page_slug="landing", show_next_prev=False, discussion=False)
 
 
-@cache_page(None)
 def render_page_by_slug(request, page_slug, show_next_prev=True, discussion=True):
     wo_html = re.sub(r"(.*)\.html$", r"\1", page_slug)
     if page_slug != wo_html:
