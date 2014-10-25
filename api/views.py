@@ -3,11 +3,10 @@ import simplejson
 import urllib
 
 from django.contrib.auth.models import User
-from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.http import (Http404, HttpResponse, HttpResponseForbidden,
+                         HttpResponseRedirect)
 from django.views.decorators.csrf import csrf_exempt
 
-from core.models import Page
 from core.commands import execute_command
 from tastypie.models import ApiKey
 
@@ -23,6 +22,7 @@ def respond_by_audio(message):
     param = urllib.urlencode({"tl": "en", "q": message})
     url = "http://translate.google.com/translate_tts?" + param
     return HttpResponseRedirect(url)
+
 
 @csrf_exempt
 def beacon(request):

@@ -1,15 +1,13 @@
 import simplejson
-import urllib
 
 from django.db import models
-from django.conf import settings
+from django.db.models import Q
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
 from tastypie import fields
 from tastypie.authentication import ApiKeyAuthentication
-from tastypie.authorization import Authorization
+from tastypie.authorization import DjangoAuthorization
 from tastypie.exceptions import Unauthorized
 from tastypie.models import create_api_key
 from tastypie.resources import ALL, ALL_WITH_RELATIONS, ModelResource
@@ -20,7 +18,34 @@ from core.models import Command, Page
 models.signals.post_save.connect(create_api_key, sender=User)
 
 
-class SingleItemModificationAuthorization(Authorization):
+class CheckAllNonGetAuthentication(ApiKeyAuthentication):
+    """
+    Authenticates everyone if the request is GET otherwise performs
+    ApiKeyAuthentication.
+    """
+
+    def is_authenticated(self, request, **kwargs):
+        if request.method == "GET":
+            return True
+        return super(CheckAllNonGetAuthentication, self).is_authenticated(
+            request, **kwargs)
+
+
+class CheckAllNonGetAuthorization(DjangoAuthorization):
+    """
+    Authorizes every authenticated user to perform GET, for all others
+    performs DjangoAuthorization.
+    """
+
+    def is_authorized(self, request, object=None):
+        if request.method == "GET":
+            return True
+        else:
+            return super(CheckAllNonGetAuthorization, self).is_authorized(
+                request, object)
+
+
+class SingleItemModificationAuthorization(CheckAllNonGetAuthorization):
     def update_list(self, object_list, bundle):
         raise Unauthorized("Sorry, no bulk update.")
 
@@ -79,7 +104,7 @@ class CommandResource(ModelResource):
 
             # Respond by audio only when the respose is a non-JSONizable
             try:
-                response_json = simplejson.loads(content_json.get("response"))
+                simplejson.loads(content_json.get("response"))
             except simplejson.JSONDecodeError:
                 return respond_by_audio(content_json["response"])
 
@@ -94,7 +119,7 @@ class PageResource(ModelResource):
     class Meta:
         queryset = Page.objects.all()
         allowed_methods = ["post", "get", "patch", "delete"]
-        authentication = ApiKeyAuthentication()
+        authentication = CheckAllNonGetAuthentication()
         authorization = SingleItemModificationAuthorization()
         excludes = ["id"]
         detail_uri_name = "slug"
@@ -106,6 +131,12 @@ class PageResource(ModelResource):
             "body": ALL
         }
         ordering = ["created_at", "modified_at", "slug", "title", "status"]
+
+    def get_object_list(self, request):
+        object_list = super(PageResource, self).get_object_list(request)
+        if not "user" in request or not request.user:
+            return object_list.filter(status="public")
+        return object_list.filter(Q(user=request.user) | Q(status="public"))
 
     def obj_create(self, bundle, **kwargs):
         return super(PageResource, self).obj_create(
