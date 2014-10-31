@@ -9,7 +9,7 @@ from tastypie import fields
 from tastypie.authentication import ApiKeyAuthentication
 from tastypie.authorization import DjangoAuthorization
 from tastypie.exceptions import Unauthorized
-from tastypie.models import create_api_key
+from tastypie.models import ApiKey, create_api_key
 from tastypie.resources import ALL, ALL_WITH_RELATIONS, ModelResource
 
 from api.views import respond_by_audio
@@ -132,11 +132,23 @@ class PageResource(ModelResource):
         }
         ordering = ["created_at", "modified_at", "slug", "title", "status"]
 
+    def get_user(self, request):
+        user = request.POST.get("user", request.GET.get("user", None))
+        if user:
+            return user
+        key = request.POST.get("api_key", request.GET.get("api_key", None))
+        try:
+            a = ApiKey.objects.get(key=key)
+        except ApiKey.DoesNotExist:
+            return None
+        return a.user
+
     def get_object_list(self, request):
         object_list = super(PageResource, self).get_object_list(request)
-        if not "user" in request or not request.user:
+        user = self.get_user(request)
+        if not user:
             return object_list.filter(status="public")
-        return object_list.filter(Q(user=request.user) | Q(status="public"))
+        return object_list.filter(Q(created_by=user) | Q(status="public"))
 
     def obj_create(self, bundle, **kwargs):
         return super(PageResource, self).obj_create(
