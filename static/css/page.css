@@ -1,9 +1,26 @@
 #content {
-  border-top: solid 1px #8C001A;
+  border-top: solid 1px;
 }
 
 #content div {
   margin-right: auto;
   margin-left: auto;
   max-width: 640px;
+}
+
+#main {
+  font-family: "adobe-caslon-pro", Times, Georgia, serif;
+}
+
+#main h1, h2, h3, h4, h5 {
+  font-family: "depot-new-web", sans-serif;
+}
+
+#main ul, ol {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#main p {
+  margin: 20px 0 20px 0;
 }
