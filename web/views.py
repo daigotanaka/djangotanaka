@@ -5,7 +5,7 @@ from django.conf import settings
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.views.decorators.cache import cache_page
+# from django.views.decorators.cache import cache_page
 
 from core.models import Page
 
@@ -206,7 +206,7 @@ def get_image_url(html):
     return url
 
 
-@cache_page(None)
+# @cache_page(None)
 def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
         template_name="page.html"):
     try:
