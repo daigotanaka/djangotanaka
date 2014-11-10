@@ -3,7 +3,6 @@
   <head>
     {% block head_javascript %}
     <!-- Load JavaScript at the footer whenever possible for faster page rendering -->
-    {{ head | safe }}
     {% endblock %}
 
     <title>{% if title %}{{ title }} | {% endif %}{{ WEBSITE_TITLE  }}</title>
