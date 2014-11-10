@@ -49,6 +49,11 @@
         <div class="byline">{{ WEBSITE_BYLINE }}</div>
       </div>
     {% endblock %}
+    {% block cover_content %}
+      <div id="cover_content">
+      {{ cover_content | safe }}
+      </div>
+    {% endblock %}
     {% block content %}
       <!-- Redefine content div -->
       <div id="content" class="span11">
