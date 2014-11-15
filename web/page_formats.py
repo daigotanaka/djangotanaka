@@ -165,6 +165,21 @@ def get_covervideo_head():
 """
 
 
+def get_covervideo_foot():
+    return """
+$(function(){
+  if ($(window).width() < 800) return;
+  var vid=$("#cover_content video").get(0);
+  //try to force it to start automatically after a few secs
+  setTimeout(function(){
+    $("body").one("touchstart load",function(){
+    vid.play();
+    }).trigger("load");
+  },3000);
+});
+"""
+
+
 def get_carousel_head():
     return """
 <link href="/static/css/carousel.css" rel="stylesheet">
@@ -229,8 +244,8 @@ def make_carousel_content(content, exclude_first=1):
     return before_carousel + carousel
 
 
-def get_cover_video_block(video_url):
-    return """<video autoplay loop muted class="full_screen_video">
-<source src="%s" type="video/mp4">
+def get_cover_video_block(video_url, poster_url):
+    return """<video controls autoplay loop muted class="full_screen_video">
+<source src="%s" type="video/mp4" poster="%s">
 </video>
-""" % video_url
+""" % (video_url, poster_url)

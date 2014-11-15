@@ -9,7 +9,8 @@ from django.template import RequestContext
 from core.models import Page
 from page_formats import (
     get_cover_video_block, get_image_url, get_black_background_head,
-    get_covervideo_head, get_coverphoto_head, get_coverphoto_foot,
+    get_coverphoto_head, get_coverphoto_foot,
+    get_covervideo_head, get_covervideo_foot,
     get_carousel_head, get_carousel_foot, get_video_url, make_carousel_content)
 
 
@@ -91,9 +92,10 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
 
     if "covervideo" in options:
         page_head += get_covervideo_head()
+        page_foot += get_covervideo_foot()
         exclude_first = 2
         video_url = get_video_url(content)
-        cover_content = get_cover_video_block(video_url)
+        cover_content = get_cover_video_block(video_url, image_url)
 
     if "carousel" in options:
         page_head += get_carousel_head()
