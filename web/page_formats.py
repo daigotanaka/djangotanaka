@@ -247,8 +247,8 @@ def make_carousel_content(content, exclude_first=1):
     return before_carousel + carousel
 
 
-def get_cover_video_block(video_url, poster_url):
-    return """<video autoplay control loop muted poster="%s" class="full_screen_video" >
+def get_cover_video_block(video_url):
+    return """<video autoplay control loop muted class="full_screen_video" >
 <source src="%s" type="video/mp4">
 </video>
-""" % (poster_url, video_url)
+""" % video_url

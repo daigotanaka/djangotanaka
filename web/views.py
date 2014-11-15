@@ -95,7 +95,7 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
         page_foot += get_covervideo_foot()
         exclude_first = 2
         video_url = get_video_url(content)
-        cover_content = get_cover_video_block(video_url, image_url)
+        cover_content = get_cover_video_block(video_url)
 
     if "carousel" in options:
         page_head += get_carousel_head()
