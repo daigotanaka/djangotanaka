@@ -51,11 +51,17 @@ def get_coverphoto_head(image_url):
     width: 100%%;
     margin: 0;
   }
-  .container h1 {
-    display:none;
-  }
   #banner {
-    display: none;
+    opacity: 0;
+    -webkit-animation: smooth 5s ease-out;
+    -moz-animation: smooth 5s ease-out;
+    -o-animation: smooth 5s ease-out;
+    -ms-animation: smooth 5s ease-out;
+    animation: smooth 5s ease-out;
+  }
+  @-webkit-keyframes smooth {
+      0%% { opacity: 1;}
+      100%% { opacity: 0;}
   }
   #cover_content {
     margin-top:-30px;
@@ -66,9 +72,6 @@ def get_coverphoto_head(image_url):
     background-size: 100%%;
     background-repeat: no-repeat;
     background-image: url(' %s ');
-  }
-  .byline {
-    display:none;
   }
   #content {
     border: none;
@@ -116,11 +119,18 @@ def get_covervideo_head():
     width: 100%%;
     margin: 0;
   }
-  .container h1 {
-    display:none;
-  }
   #banner {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    -webkit-animation: smooth 5s ease-out;
+    -moz-animation: smooth 5s ease-out;
+    -o-animation: smooth 5s ease-out;
+    -ms-animation: smooth 5s ease-out;
+    animation: smooth 5s ease-out;
+  }
+  @-webkit-keyframes smooth {
+      0%% { opacity: 1;}
+      100%% { opacity: 0;}
   }
   #cover_content {
     margin-top:-30px;
@@ -136,9 +146,6 @@ def get_covervideo_head():
     min-height: 100%;
     width: auto;
     height: auto;
-  }
-  .byline {
-    display:none;
   }
   #content {
     border: none;
