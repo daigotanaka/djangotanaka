@@ -121,6 +121,7 @@ def get_covervideo_head():
   }
   #banner {
     position: absolute;
+    top: 100px;
     opacity: 0;
     -webkit-animation: smooth 5s ease-out;
     -moz-animation: smooth 5s ease-out;
@@ -176,7 +177,7 @@ $(function(){
     $("body").one("touchstart load",function(){
     vid.play();
     }).trigger("load");
-  },3000);
+  },0);
 });
 </script>
 """
@@ -247,7 +248,7 @@ def make_carousel_content(content, exclude_first=1):
 
 
 def get_cover_video_block(video_url, poster_url):
-    return """<video controls autoplay loop muted class="full_screen_video">
-<source src="%s" type="video/mp4" poster="%s">
+    return """<video autoplay control loop muted poster="%s" class="full_screen_video" >
+<source src="%s" type="video/mp4">
 </video>
-""" % (video_url, poster_url)
+""" % (poster_url, video_url)
