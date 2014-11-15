@@ -11,7 +11,7 @@
         <table>
         {% for page in pages %}
           <tr>
-            <td>{{page.created_at}}</td>
+            <td>{{page.created_at | date:"M. d, Y"}}</td>
             <td>{% if page.status != "public" %}[private] {% endif %}<a href="/{{ page.slug }}">{{page.title}}</td>
           </tr>
         {% endfor %}
