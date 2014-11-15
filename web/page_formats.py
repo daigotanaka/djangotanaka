@@ -167,6 +167,7 @@ def get_covervideo_head():
 
 def get_covervideo_foot():
     return """
+<script>
 $(function(){
   if ($(window).width() < 800) return;
   var vid=$("#cover_content video").get(0);
@@ -177,6 +178,7 @@ $(function(){
     }).trigger("load");
   },3000);
 });
+</script>
 """
 
 
