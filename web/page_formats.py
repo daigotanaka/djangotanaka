@@ -53,13 +53,13 @@ def get_coverphoto_head(image_url):
   }
   #banner {
     opacity: 0;
-    -webkit-animation: smooth 5s ease-out;
-    -moz-animation: smooth 5s ease-out;
-    -o-animation: smooth 5s ease-out;
-    -ms-animation: smooth 5s ease-out;
-    animation: smooth 5s ease-out;
+    -webkit-animation: fadeout 5s ease-in;
+    -moz-animation: fadeout 5s ease-in;
+    -o-animation: fadeout 5s ease-in;
+    -ms-animation: fadeout 5s ease-in;
+    animation: fadeout 5s ease-in;
   }
-  @-webkit-keyframes smooth {
+  @-webkit-keyframes fadeout {
       0%% { opacity: 1;}
       100%% { opacity: 0;}
   }
@@ -122,14 +122,15 @@ def get_covervideo_head():
   #banner {
     position: absolute;
     top: 100px;
+    left: 100px;
     opacity: 0;
-    -webkit-animation: smooth 5s ease-out;
-    -moz-animation: smooth 5s ease-out;
-    -o-animation: smooth 5s ease-out;
-    -ms-animation: smooth 5s ease-out;
-    animation: smooth 5s ease-out;
+    -webkit-animation: fadeout 5s ease-in;
+    -moz-animation: fadeout 5s ease-in;
+    -o-animation: fadeout 5s ease-in;
+    -ms-animation: fadeout 5s ease-in;
+    animation: fadeout 5s ease-in;
   }
-  @-webkit-keyframes smooth {
+  @-webkit-keyframes fadeout {
       0%% { opacity: 1;}
       100%% { opacity: 0;}
   }
