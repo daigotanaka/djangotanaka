@@ -56,7 +56,7 @@ def markdown(content):
     content = markdown2.markdown(
         content,
         extras=["code-friendly", "fenced-code-blocks", "footnotes",
-                "wiki-tables"])
+                "tables"])
     return content
 
 
