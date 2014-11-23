@@ -186,3 +186,26 @@ Draft:
     A paragraph that is converted to slide #2
 
     ...
+
+### Advanced: Use R
+
+1. Use heroku-buildpack-multi:
+
+```
+heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
+```
+
+2. Activate installation of rpy2 in requirements.txt
+
+3. Set environmental variables
+
+```
+heroku config:set LD_LIBRARY_PATH=/app/.heroku/vendor/lib:/app/.heroku/python/lib::/app/vendor/R/lib64/R/modules:/app/vendor/R/lib64/R/lib:/app/vendor/gcc-4.3/lib64
+```
+
+4. Commit the changes, and push the changes to heroku
+
+```
+git add requirements.txt
+git push heroku master
+```

@@ -1,0 +1,5 @@
+# This file is not effective until you use heroku-buildpack-multi by setting
+# $ heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
+
+https://github.com/virtualstaticvoid/heroku-buildpack-r.git
+https://github.com/heroku/heroku-buildpack-python.git
