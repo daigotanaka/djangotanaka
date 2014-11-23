@@ -26,7 +26,8 @@ def rmarkdown_page(page_id, **kwargs):
         return page.body
     with open("/var/tmp/tmp.Rmd", "w") as f:
         f.write(page.body)
-    ro.r("library('knitr'); knit2html(input='/var/tmp/tmp.Rmd');")
+    ro.r("library('knitr');"
+         "knit2html(input='/var/tmp/tmp.Rmd', output='/var/tmp/tmp.html');")
     with open("/var/tmp/tmp.html", "r") as f:
         content = f.read()
     content = re.sub(r"<[/]*body>", "", content)
