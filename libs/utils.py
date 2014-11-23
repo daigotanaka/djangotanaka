@@ -7,6 +7,8 @@ def cache_get_key(*args, **kwargs):
     for arg in args:
         serialise.append(str(arg))
     for key,arg in kwargs.items():
+        if key == "clear_cache":
+            continue
         serialise.append(str(key))
         serialise.append(str(arg))
     key = hashlib.md5("".join(serialise)).hexdigest()
