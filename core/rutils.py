@@ -32,8 +32,6 @@ def rmarkdown_page(page_id, **kwargs):
     content = re.sub(r"<[/]*body>", "", content)
     content = re.sub(r"<[/]*html>", "", content)
     content = content[content.find("</head>"):]
-    # Check out put on log
-    logger.info(content)
     return content
 
 
