@@ -204,7 +204,13 @@ heroku config:set PATH=/app/vendor/R/bin:/app/vendor/gcc-4.3/bin:/app/.heroku/py
 heroku config:set LD_LIBRARY_PATH=/app/.heroku/vendor/lib:/app/.heroku/python/lib::/app/vendor/R/lib64/R/modules:/app/vendor/R/lib64/R/lib:/app/vendor/gcc-4.3/lib64
 ```
 
-4. Commit the changes, and push the changes to heroku
+4. Add rpy2 to requirements.txt
+
+```
+rpy2==2.3.10
+```
+
+5. Commit the changes, and push the changes to heroku
 
 ```
 git add requirements.txt
