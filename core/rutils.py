@@ -24,10 +24,10 @@ def rmarkdown_page(page_id, **kwargs):
     page = Page.objects.get(id=page_id)
     if not RPY2_INSTALLED:
         return page.body
-    with open("tmp.Rmd", "w") as f:
+    with open("/var/tmp/tmp.Rmd", "w") as f:
         f.write(page.body)
-    ro.r("library('knitr'); knit2html('./tmp.Rmd');")
-    with open("tmp.html", "r") as f:
+    ro.r("library('knitr'); knit2html(input='/var/tmp/tmp.Rmd');")
+    with open("/var/tmp/tmp.html", "r") as f:
         content = f.read()
     content = re.sub(r"<[/]*body>", "", content)
     content = re.sub(r"<[/]*html>", "", content)
