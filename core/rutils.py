@@ -7,6 +7,9 @@ from django.dispatch import receiver
 from core.models import Page
 from libs.utils import cache_for
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 def is_rmarkdown(content):
     # TODO(Daigo): Better header pattern?
@@ -29,6 +32,8 @@ def rmarkdown_page(page_id, **kwargs):
     content = re.sub(r"<[/]*body>", "", content)
     content = re.sub(r"<[/]*html>", "", content)
     content = content[content.find("</head>"):]
+    # Check out put on log
+    logger.info(content)
     return content
 
 
