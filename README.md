@@ -200,6 +200,7 @@ heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-mult
 3. Set environmental variables
 
 ```
+heroku config:set PATH=/app/vendor/R/bin:/app/vendor/gcc-4.3/bin:/app/.heroku/python/bin:/usr/local/bin:/usr/bin:/bin
 heroku config:set LD_LIBRARY_PATH=/app/.heroku/vendor/lib:/app/.heroku/python/lib::/app/vendor/R/lib64/R/modules:/app/vendor/R/lib64/R/lib:/app/vendor/gcc-4.3/lib64
 ```
 
