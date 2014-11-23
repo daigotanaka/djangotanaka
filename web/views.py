@@ -75,7 +75,7 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
     options = ""
 
     if is_rmarkdown(page.body):
-        content = rmarkdown_page(page_id)
+        content = rmarkdown_page(page_id, clear_cache=False)
         options = content[0:content.find("-->")]
     elif is_markdown(content):
         content = markdown(content)
