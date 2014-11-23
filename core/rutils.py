@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from core.models import Page
-from lib.utils import cache_for
+from libs.utils import cache_for
 
 
 def is_rmarkdown(content):
