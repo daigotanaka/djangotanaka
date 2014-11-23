@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from core.models import Page
+from core.rutils import is_rmarkdown, rmarkdown_page
 from page_formats import (
     get_cover_video_block, get_image_url, get_black_background_head,
     get_coverphoto_head, get_coverphoto_foot,
@@ -72,7 +73,11 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
 
     content = page.body
     options = ""
-    if is_markdown(content):
+
+    if is_rmarkdown(page.body):
+        content = rmarkdown_page(page_id)
+        options = content[0:content.find("-->")]
+    elif is_markdown(content):
         content = markdown(content)
         options = content[0:content.find("-->")]
 
