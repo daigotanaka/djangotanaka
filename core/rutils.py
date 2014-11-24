@@ -1,9 +1,6 @@
 import imp
 import re
 
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
 from core.models import Page
 from libs.utils import cache_for
 
@@ -23,6 +20,7 @@ def is_rmarkdown(content):
 def rmarkdown_page(page_id, **kwargs):
     page = Page.objects.get(id=page_id)
     if not RPY2_INSTALLED:
+        logger.info("rpy2 not found. I won't convert the raw text.")
         return page.body
     with open("/var/tmp/tmp.Rmd", "w") as f:
         f.write(page.body)
@@ -34,14 +32,6 @@ def rmarkdown_page(page_id, **kwargs):
     content = re.sub(r"<[/]*html>", "", content)
     content = content[content.find("</head>") + len("</head>"):]
     return content
-
-
-@receiver(post_save, sender=Page, dispatch_uid="update_rmarkdown_cache")
-def update_rmarkdown_cache(sender, **kwargs):
-    page = kwargs['instance']
-    if not is_rmarkdown(page.body):
-        return
-    rmarkdown_page(page_id=page.id, clear_cache=True)
 
 
 # Import only if rpy2 is available

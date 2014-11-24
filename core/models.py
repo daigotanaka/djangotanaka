@@ -59,3 +59,7 @@ class Page(Model):
             self.created_at = datetime.datetime.now()
         self.modified_at = datetime.datetime.now()
         return super(Page, self).save(*args, **kwargs)
+
+
+# Import receivers at the bottom to avoid circular imports
+import receivers
