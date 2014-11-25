@@ -9,6 +9,10 @@ def get_image_url(html):
         url = r.group(1)
     except Exception:
         return settings.DEFAULT_IMAGE_URL
+
+    if "data:image/svg+xml" in url:
+        url = settings.DEFAULT_IMAGE_URL
+
     return url
 
 
