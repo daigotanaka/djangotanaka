@@ -1,5 +1,5 @@
 <!--markdown-->
-# djangotanaka
+# kawaraban
 
 A Django based web site that let you focus on writing.
 
@@ -32,7 +32,7 @@ cumbersome HTML.**
 set up github
 2. Get the source code
 
-        git clone git@github.com:daigotanaka/djangotanaka.git
+        git clone git@github.com:daigotanaka/kawaraban.git
         mv djanotanaka my_website
 
 ### Install Python
