@@ -82,6 +82,8 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
         options = content[0:content.find("-->")]
 
     image_url = get_image_url(content)
+    if "data:image/svg+xml" in image_url:
+        image_url = None
 
     cover_content = ""
     page_head = page.head
