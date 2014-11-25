@@ -26,6 +26,6 @@ def cache_for(time):
                 cache.delete(key)
                 result = fn(*args, **kwargs)
                 cache.set(key, result, time)
-            return result + "<!-- cache key: %s -->" % key
+            return result
         return wrapper
     return decorator
