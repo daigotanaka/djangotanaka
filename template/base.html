@@ -18,10 +18,12 @@
     <meta property="og:image" content="{{ image_url }}"/>
     {% endblock %}
 
+    {% block base_style %}
     <!-- Le styles -->
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/google-code-prettify/prettify.css" rel="stylesheet">
     <link href="/static/css/base.css" rel="stylesheet">
+    {% endblock %}
 
     {% block more_style %}
     {{ head | safe }}
@@ -32,12 +34,14 @@
       <script src="/static/bootstrap/js/html5shiv.js"></script>
     <![endif]-->
 
+    {% block apple_touch %}
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/bootstrap/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/bootstrap/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/bootstrap/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/static/bootstrap/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="/static/bootstrap/ico/favicon.png">
+    {% endblock %}
   </head>
 
   <body>
@@ -58,14 +62,18 @@
       <div id="content" class="span11">
       </div>
     {% endblock %}
+    {% block end_container %}
     </div> <!-- /container -->
+    {% endblock %}
 
+    {% block base_javascript %}
     <script src="/static/js/jquery-2.0.3.min.js"></script>
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/google-code-prettify/run_prettify.js"></script>
     <script type="text/javascript">
       $("p").has("img").css({textAlign: "center"});
     </script>
+    {% endblock %}
     {% block footer %}
     {{ foot | safe }}
     {% endblock %}
