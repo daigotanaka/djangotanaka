@@ -10,4 +10,5 @@ def update_rmarkdown_cache(sender, **kwargs):
     page = kwargs['instance']
     if not is_rmarkdown(page.body):
         return
-    rmarkdown_page(page_id=page.id, clear_cache=True)
+    # It should not use page_id as a kwarg to keep the cache key consistent
+    rmarkdown_page(page.id, clear_cache=True)

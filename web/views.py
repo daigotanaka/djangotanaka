@@ -75,14 +75,13 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
     options = ""
 
     if is_rmarkdown(page.body):
+        # It should not use page_id as a kwarg to keep the cache key consistent
         content = rmarkdown_page(page_id, clear_cache=False)
-        options = content[0:content.find("-->")]
     elif is_markdown(content):
         content = markdown(content)
         options = content[0:content.find("-->")]
 
     image_url = get_image_url(content)
-
     cover_content = ""
     page_head = page.head
     page_foot = page.foot
