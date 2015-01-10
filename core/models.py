@@ -53,6 +53,7 @@ class Page(Model):
     head = TextField(blank=True)
     body = TextField(blank=True)
     foot = TextField(blank=True)
+    variables = TextField(blank=True)
 
     def save(self, *args, **kwargs):
         if not self.id:
