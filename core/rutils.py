@@ -1,5 +1,6 @@
 import imp
 import re
+import requests
 
 from core.models import Page
 from libs.utils import cache_for
@@ -11,7 +12,8 @@ logger = logging.getLogger(__name__)
 def is_rmarkdown(content):
     # TODO(Daigo): Better header pattern?
     markdown_header = "---"
-    if content[0:len(markdown_header)] == markdown_header:
+    if (content[0:len(markdown_header)] == markdown_header or
+            re.match(r"http[s]:\/\/.*\.Rmd$", content)):
         return True
     return False
 
@@ -19,11 +21,18 @@ def is_rmarkdown(content):
 @cache_for(60 * 60 * 24 * 30)
 def rmarkdown_page(page_id, **kwargs):
     page = Page.objects.get(id=page_id)
+
+    if re.match(r"http[s]:\/\/.*\.Rmd$", page.body):
+        response = requests.get(page.body)
+        body = response.content
+    else:
+        body = page.body
+
     if not RPY2_INSTALLED:
         logger.info("rpy2 not found. I won't convert the raw text.")
-        return page.body
+        return body
     with open("/var/tmp/tmp.Rmd", "w") as f:
-        f.write(page.body)
+        f.write(body)
     ro.r("library('knitr');"
          "knit2html(input='/var/tmp/tmp.Rmd', output='/var/tmp/tmp.html');")
     with open("/var/tmp/tmp.html", "r") as f:
