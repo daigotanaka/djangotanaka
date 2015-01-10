@@ -1,3 +1,4 @@
+import json
 import logging
 import markdown2
 import re
@@ -26,6 +27,15 @@ def markdown_page(page_id, **kwargs):
         body = response.content
     else:
         body = page.body
+
+    if page.variables:
+        try:
+            variables = json.loads(page.variables)
+            body = body % variables
+            logger.info(variables)
+        except Exception, err:
+            logger.info(err)
+            pass
 
     content = markdown2.markdown(
         body,

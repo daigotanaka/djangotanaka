@@ -1,11 +1,12 @@
 import imp
+import json
+import logging
 import re
 import requests
 
 from core.models import Page
 from libs.utils import cache_for
 
-import logging
 logger = logging.getLogger(__name__)
 
 
@@ -27,6 +28,15 @@ def rmarkdown_page(page_id, **kwargs):
         body = response.content
     else:
         body = page.body
+
+    if page.variables:
+        try:
+            variables = json.loads(page.variables)
+            body = body % variables
+            logger.info(variables)
+        except Exception, err:
+            logger.info(err)
+            pass
 
     if not RPY2_INSTALLED:
         logger.info("rpy2 not found. I won't convert the raw text.")
