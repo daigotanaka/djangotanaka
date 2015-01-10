@@ -11,10 +11,14 @@ class Command(object):
 
     def post(self, username, api_key):
         filename = self.filenames[0]
-        if not os.path.exists(filename):
+        if os.path.exists(filename):
+            with open(filename) as f:
+                body = f.read()
+        elif filename[0:4] == "http":
+            body = filename
+        else:
             return
-        with open(filename) as f:
-            body = f.read()
+
         _, name = os.path.split(filename)
         pos = name.find(".")
         slug = name[0:pos] if pos > 0 else filename

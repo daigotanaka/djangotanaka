@@ -4,7 +4,7 @@ import simplejson
 from django.contrib.auth.models import User
 from django.db.models import Model
 from django.db.models import (CharField, DateTimeField, FloatField, ForeignKey,
-    TextField)
+                              TextField)
 
 from core.commands import execute_command
 
@@ -62,4 +62,4 @@ class Page(Model):
 
 
 # Import receivers at the bottom to avoid circular imports
-import receivers
+import receivers  # NOQA

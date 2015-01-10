@@ -1,4 +1,5 @@
-from site_info import *
+from site_info import *  # NOQA
+
 
 def global_vars(context):
     return {

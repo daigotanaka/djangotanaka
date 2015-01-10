@@ -1,4 +1,3 @@
-import markdown2
 import re
 
 from django.conf import settings
@@ -8,6 +7,7 @@ from django.template import RequestContext
 
 from core.models import Page
 from core.rutils import is_rmarkdown, rmarkdown_page
+from core.utils import is_markdown, markdown_page
 from page_formats import (
     get_cover_video_block, get_image_url, get_black_background_head,
     get_coverphoto_head, get_coverphoto_foot,
@@ -45,22 +45,6 @@ def render_page_by_slug(request, page_slug, show_next_prev=True,
     return render_page_by_id(request, page.id, show_next_prev, discussion)
 
 
-def is_markdown(content):
-    markdown_header = "<!--markdown"
-    if content[0:len(markdown_header)] == markdown_header:
-        return True
-    return False
-
-
-def markdown(content):
-    # TODO: Cache this!
-    content = markdown2.markdown(
-        content,
-        extras=["code-friendly", "fenced-code-blocks", "footnotes",
-                "tables"])
-    return content
-
-
 def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
                       template_name="page.html"):
     try:
@@ -74,11 +58,11 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
     content = page.body
     options = ""
 
-    if is_rmarkdown(page.body):
+    if is_rmarkdown(content):
         # It should not use page_id as a kwarg to keep the cache key consistent
         content = rmarkdown_page(page_id, clear_cache=False)
     elif is_markdown(content):
-        content = markdown(content)
+        content = markdown_page(page_id, clear_cache=False)
         options = content[0:content.find("-->")]
 
     image_url = get_image_url(content)

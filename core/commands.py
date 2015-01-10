@@ -24,9 +24,10 @@ def execute_command(command):
 
     return "", ""
 
+
 def interpret_command(raw_command):
     """Interpret command from a free text input"""
-    return None, {} # To be implemented
+    return None, {}  # To be implemented
 
 
 def beacon(command):
@@ -36,15 +37,15 @@ def beacon(command):
     lng = data.get("lng")
 
     # Record in Log
-    last_log = core.models.Log.objects.filter(created_by=command.created_by
-        ).order_by("-created_at")
+    last_log = core.models.Log.objects.filter(
+        created_by=command.created_by).order_by("-created_at")
     if (not last_log or
             now - last_log[0].created_at > datetime.timedelta(hours=1)):
         core.models.Log.objects.create(
             created_by=command.created_by,
             lat=lat,
             lng=lng,
-            raw_data= simplejson.dumps(data)
+            raw_data=simplejson.dumps(data)
         )
     # TODO(Daigo): Insert code to trigger events
 
