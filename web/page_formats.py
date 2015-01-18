@@ -63,6 +63,9 @@ def get_coverphoto_head(image_url):
     -ms-animation: fadeout 5s ease-in;
     animation: fadeout 5s ease-in;
   }
+  #banner div {
+    border-bottom: none;
+  }
   @-webkit-keyframes fadeout {
       0%% { opacity: 1;}
       100%% { opacity: 0;}
@@ -78,6 +81,7 @@ def get_coverphoto_head(image_url):
     background-image: url(' %s ');
   }
   #content {
+    max-width: 810px;
     border: none;
     margin: 0 auto;
     float: none;
@@ -124,6 +128,7 @@ def get_covervideo_head():
     margin: 0;
   }
   #banner {
+    border-bottom: none;
     position: absolute;
     top: 100px;
     left: 100px;
@@ -133,6 +138,9 @@ def get_covervideo_head():
     -o-animation: fadeout 5s ease-in;
     -ms-animation: fadeout 5s ease-in;
     animation: fadeout 5s ease-in;
+  }
+  #banner div {
+    border-bottom: none;
   }
   @-webkit-keyframes fadeout {
       0%% { opacity: 1;}
@@ -154,6 +162,7 @@ def get_covervideo_head():
     height: auto;
   }
   #content {
+    max-width: 810px;
     border: none;
     margin: 0 auto;
     float: none;

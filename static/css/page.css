@@ -1,11 +1,19 @@
-#content {
-  border-top: solid 1px;
+#banner div {
+  border-bottom: solid 1px
 }
 
 #content div {
   margin-right: auto;
   margin-left: auto;
   max-width: 640px;
+}
+
+#left-col {
+  margin-top: 15px;
+}
+
+#center-col div {
+  margin-left: 10px;
 }
 
 #main {

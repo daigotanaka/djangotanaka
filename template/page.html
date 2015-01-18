@@ -5,21 +5,25 @@
     {% endblock %}
 
     {% block content %}
-    <div id="content" class="span11">
-      <div id="main">
-        {{ main | safe}}
+    <div id="content" class="span13 row">
+      <div id="left-col" class="span2">
+        <a class="url" href="/blogs/">Blog</a><br/>
       </div>
-      <div>
-        Original post: {{ created_at }} | Last updated: {{ modified_at }}<br/>
-        {% if prev_page or next_page %}<a href="/">~/</a><br/>
-        <a href="/blogs/">~/blogs/</a><br/>{% endif %}
-        {% if prev_page %}<a href="/{{ prev_page.slug }}">~/blogs/{{ prev_page.title }}</a><br/>{% endif %}
-        {% if prev_page or next_page %}~/blogs/{{ title }}<br/>{% endif %}
-        {% if next_page %}<a href="/{{ next_page.slug }}">~/blogs/{{ next_page.title }}</a><br/>{% endif %}
-      </div>
-    {% if DISQUS_HANDLE and discussion %}
-      <div id="disqus_thread"></div>
-      <script type="text/javascript">
+      <div id="center-col" class="span11">
+        <div id="main">
+          {{ main | safe}}
+        </div>
+        <div>
+          Original post: {{ created_at }} | Last updated: {{ modified_at }}<br/>
+          {% if prev_page or next_page %}<a href="/">~/</a><br/>
+          <a href="/blogs/">~/blogs/</a><br/>{% endif %}
+          {% if prev_page %}<a href="/{{ prev_page.slug }}">~/blogs/{{ prev_page.title }}</a><br/>{% endif %}
+          {% if prev_page or next_page %}~/blogs/{{ title }}<br/>{% endif %}
+          {% if next_page %}<a href="/{{ next_page.slug }}">~/blogs/{{ next_page.title }}</a><br/>{% endif %}
+        </div>
+        {% if DISQUS_HANDLE and discussion %}
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
           /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
           var disqus_shortname = '{{ DISQUS_HANDLE }}'; // required: replace example with your forum shortname
 
@@ -29,12 +33,13 @@
               dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
               (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
           })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    {% endif %}
-      <div id="footer" class="right-align">
-        <a href="http://creativecommons.org/licenses/"><img src="http://i.creativecommons.org/l/by/3.0/88x31.png" class="cc-logo" /></a>
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      {% endif %}
+        <div id="footer" class="right-align">
+          <a href="http://creativecommons.org/licenses/"><img src="http://i.creativecommons.org/l/by/3.0/88x31.png" class="cc-logo" /></a>
+        </div>
       </div>
     </div>
     {% endblock %}
