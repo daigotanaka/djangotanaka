@@ -65,6 +65,8 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
         content = markdown_page(page_id, clear_cache=False)
         options = content[0:content.find("-->")]
 
+    content = content.decode("utf-8")
+
     image_url = get_image_url(content)
     cover_content = ""
     page_head = page.head
