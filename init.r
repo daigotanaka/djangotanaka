@@ -1,8 +1,6 @@
-install.packages("datasets", dependencies = TRUE)
 install.packages("methods", dependencies = TRUE)
 install.packages("ggplot2", dependencies = TRUE)
 install.packages("knitr", dependencies = TRUE)
-install.packages("devtools", dependencies = TRUE)
 install.packages("base64enc", dependencies = TRUE)
 library(devtools)
 options(unzip = "internal")
