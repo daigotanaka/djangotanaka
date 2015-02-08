@@ -15,6 +15,13 @@ from page_formats import (
     get_carousel_head, get_carousel_foot, get_video_url, make_carousel_content)
 
 
+def render_500(request):
+    response = render_to_response('500.html', {},
+            context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
+
+
 def render_landing(request):
     old_page_id = request.GET.get("p", None)
     if old_page_id:
@@ -65,7 +72,10 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
         content = markdown_page(page_id, clear_cache=False)
         options = content[0:content.find("-->")]
 
-    content = content.decode("utf-8")
+    try:
+        content = content.decode("utf-8")
+    except UnicodeEncodeError:
+        pass  # Taking a chance here. Let it fail later if it does.
 
     image_url = get_image_url(content)
     cover_content = ""
