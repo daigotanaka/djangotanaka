@@ -68,7 +68,35 @@ Add this at the end of the file:
 
 4. Deploy
 
+        heroku config:set HEROKU=TRUE
         git push heroku master
+        heroku ps:scale web=1
+        heroku run python manage.py syncdb
+
+It will ask you to create an account.
+
+5. Useful Heorku add-ons
+
+MemCachier:
+
+        heroku addons:add memcachier
+
+PG Backups:
+
+        heroku addons:add pgbackups:auto-week
+
+New Relic:
+New Relic is a monitoring tool, and it can be used to ping the server periodically
+so the free Dyno won't go to sleep.
+
+        heroku addons:add newrelic:stark
+
+After deploying the app, go to
+
+        https://addons-sso.heroku.com/apps/your-heroku-app-name/addons/newrelic
+
+Choose to set up New Relic APM, select Python for the agent to install, and
+follow the rest of the instruction.
 
 ## Run the server locally
 
