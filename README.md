@@ -228,8 +228,8 @@ heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-mult
 3. Set environmental variables
 
 ```
-heroku config:set PATH=/app/vendor/R/bin:/app/vendor/gcc-4.3/bin:/app/.heroku/python/bin:/usr/local/bin:/usr/bin:/bin
-heroku config:set LD_LIBRARY_PATH=/app/.heroku/vendor/lib:/app/.heroku/python/lib::/app/vendor/R/lib64/R/modules:/app/vendor/R/lib64/R/lib:/app/vendor/gcc-4.3/lib64
+heroku config:set PATH=/app/vendor/pg/bin:/app/vendor/R/bin:/app/vendor/gcc-4.3/bin:/app/.heroku/python/bin:/usr/local/bin:/usr/bin:/bin
+heroku config:set LD_LIBRARY_PATH=/app/.heroku/vendor/lib:/app/.heroku/python/lib::/app/vendor/R/lib64/R/modules:/app/vendor/R/lib64/R/lib:/app/vendor/gcc-4.3/lib64:/app/vendor/pg/lib
 ```
 
 4. Add rpy2 to requirements.txt
@@ -242,6 +242,7 @@ rpy2==2.3.10
 
 ```
 git add requirements.txt
+heroku config:set BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
 git push heroku master
 ```
 
