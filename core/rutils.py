@@ -14,7 +14,7 @@ def is_rmarkdown(content):
     # TODO(Daigo): Better header pattern?
     markdown_header = "---"
     if (content[0:len(markdown_header)] == markdown_header or
-            re.match(r"http[s]:\/\/.*\.Rmd$", content)):
+            re.match(r"http[s]:\/\/.*\.Rmd[?]*.*$", content)):
         return True
     return False
 
@@ -23,7 +23,7 @@ def is_rmarkdown(content):
 def rmarkdown_page(page_id, **kwargs):
     page = Page.objects.get(id=page_id)
 
-    if re.match(r"http[s]:\/\/.*\.Rmd$", page.body):
+    if re.match(r"http[s]:\/\/.*\.Rmd[?]*.*$", page.body):
         response = requests.get(page.body)
         body = response.content
     else:
