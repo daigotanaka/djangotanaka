@@ -35,6 +35,7 @@
 }
 
 p.caption {
+  font-family: sans-serif !important;
   margin-left: 10% !important;
   width: 80%;
 }
