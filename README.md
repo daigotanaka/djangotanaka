@@ -96,7 +96,9 @@ After deploying the app, go to
         https://addons-sso.heroku.com/apps/your-heroku-app-name/addons/newrelic
 
 Choose to set up New Relic APM, select Python for the agent to install, and
-follow the rest of the instruction.
+follow the rest of the instruction:
+
+        https://docs.newrelic.com/docs/agents/python-agent/hosting-services/python-agent-heroku
 
 ## Run the server locally
 
