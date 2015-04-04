@@ -1,5 +1,5 @@
 # My settings
-WEBSITE_URL = "http://mywebsite.com"
+WEBSITE_URL = "http://0.0.0.0:5000"
 WEBSITE_TITLE = "My Site Name"
 WEBSITE_BYLINE = "Something more to say"
 DEFAULT_IMAGE_URL = WEBSITE_URL + "/static/img/thumbnail.jpg"

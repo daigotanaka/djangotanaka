@@ -20,9 +20,11 @@
 
     {% block base_style %}
     <!-- Le styles -->
+    {% if not custom_css %}
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/google-code-prettify/prettify.css" rel="stylesheet">
     <link href="/static/css/base.css" rel="stylesheet">
+    {% endif %}
     {% endblock %}
 
     {% block more_style %}

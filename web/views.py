@@ -82,6 +82,13 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
     page_head = page.head
     page_foot = page.foot
     exclude_first = 1
+    custom_css = None
+    if "custom-css" in options:
+        try:
+            custom_css = re.match(r".* (.*\.css)", options).group(1)
+        except:
+            custom_css = None
+
     if "black-background" in options:
         page_head += get_black_background_head()
 
@@ -128,6 +135,7 @@ def render_page_by_id(request, page_id, discussion=True, show_next_prev=True,
         "prev_page": prev_page,
         "next_page": next_page,
         "head": page_head,
+        "custom_css": custom_css,
         "cover_content": cover_content,
         "main": content,
         "foot": page_foot,
